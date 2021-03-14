@@ -1,11 +1,14 @@
 
-data_dir = "/home/projects/cu_10039/people/bartho/warfarin/data"
-sh_dir = "/home/projects/cu_10039/people/bartho/warfarin/sh"
-Rscript_dir = "/home/projects/cu_10039/people/bartho/warfarin/R/Rscripts"
+data_dir = "/home/projects/cu_10039/people/bartho/warfarin/data/ukb/"
+raw_data_dir = "/home/projects/cu_10039/people/bartho/warfarin/data/ukb/raw/"
+sh_dir = "/home/projects/cu_10039/people/bartho/warfarin/sh/"
 
-
-ruleorder: phenotype >
+#ruleorder: phenotype
 
 rule phenotype:
     input:
-        issue_data = data_dir + ""
+        issue_file_path = raw_data_dir + "ukb_gp_scripts.txt"
+    output:
+        output_path = data_dir + "temp/01_warf_df.txt"
+    run:
+        shell(sh_dir + "01_phenotype.sh {input.issue_file_path} {output.output_path}")

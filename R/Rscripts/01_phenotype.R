@@ -17,7 +17,7 @@ source("Rscripts/config.R")
 ### Loading issue data file, extracting warfarin related entries, clean bnf codes and issue dates
 
 #Loading dataset
-df_orig <- read_delim(UKB_ISSUE_FILE, delim="\t", guess_max = 3000)
+df_orig <- read_delim(ISSUE_FILE_INPUT, delim="\t", guess_max = 3000)
 
 #removing dots from bnf_codes
 df_orig <- df_orig %>%
@@ -256,7 +256,7 @@ dev.off()
 # ------------------------------------------------------------------------
 #### Saving temporary dataframe
 
-write.table(warf_df, paste(TEMP_DIR, "01_warf_df.txt", sep = "/"), col.names = T, row.names = F, quote = F)
+write.table(warf_df, WARF_PHENOTYPE_OUTPUT, col.names = T, row.names = F, quote = F)
 
 
 

@@ -1,0 +1,19 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 1
+Job counts:
+	count	jobs
+	1	phenotype
+	1
+
+[Sun Mar 14 14:27:21 2021]
+rule phenotype:
+    input: /home/projects/cu_10039/people/bartho/warfarin/data/ukb/raw/ukb_gp_scripts.txt
+    output: /home/projects/cu_10039/people/bartho/warfarin/data/ukb/temp/01_warf_df.txt
+    jobid: 0
+
+Submitted job 0 with external jobid '31150344'.
+[Sun Mar 14 14:35:22 2021]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /home/projects/cu_10039/people/bartho/warfarin/snakemake/.snakemake/log/2021-03-14T142720.340202.snakemake.log

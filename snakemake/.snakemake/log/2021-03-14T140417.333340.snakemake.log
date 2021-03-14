@@ -1,0 +1,18 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	phenotype
+	1
+
+[Sun Mar 14 14:04:19 2021]
+rule phenotype:
+    input: /home/projects/cu_10039/people/bartho/warfarin/data/ukb/raw/ukb_gp_scripts.txt
+    output: /home/projects/cu_10039/people/bartho/warfarin/data/ukb/temp/01_warf_df.txt
+    jobid: 0
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/projects/cu_10039/people/bartho/warfarin/snakemake/.snakemake/log/2021-03-14T140417.333340.snakemake.log

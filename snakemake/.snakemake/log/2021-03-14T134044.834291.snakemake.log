@@ -1,0 +1,3 @@
+NameError in line 9 of /home/projects/cu_10039/people/bartho/warfarin/snakemake/snakefile:
+name 'data_dir' is not defined
+  File "/home/projects/cu_10039/people/bartho/warfarin/snakemake/snakefile", line 9, in <module>
