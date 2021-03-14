@@ -1,0 +1,2 @@
+length(eid) eur sex_mismatch sex_aneu het_missing
+488377 437233 436898 436469 436469

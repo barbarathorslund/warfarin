@@ -2,23 +2,59 @@
 data_dir = "/home/projects/cu_10039/people/bartho/warfarin/data/ukb/"
 raw_data_dir = "/home/projects/cu_10039/people/bartho/warfarin/data/ukb/raw/"
 sh_dir = "/home/projects/cu_10039/people/bartho/warfarin/sh/"
+results_dir = "/home/projects/cu_10039/people/bartho/warfarin/results/"
 
-
-ruleorder: phenotype > metadata
+ruleorder: phenotype > metadata > filter_qc > final_phenofile 
 
 rule phenotype:
     input:
-        issue_file = raw_data_dir + "ukb_gp_scripts.txt"
+        issues_raw = raw_data_dir + "ukb_gp_scripts.txt"
     output:
-        phenotype_file = data_dir + "temp/01_warf_df.txt"
+        defined_phenotype = data_dir + "temp/01_warf_phenotype.txt"
     run:
-        shell(sh_dir + "01_phenotype.sh {input.issue_file} {output.output_file}")
+        shell(sh_dir + "01_phenotype.sh {input.issues_raw} {output.defined_phenotype}")
 
 
 rule metadata:
     input:
-        raw_metadata_file = raw_data_dir + "ukb_27581.all_fields.h5"
+        metadata_raw = raw_data_dir + "ukb_27581.all_fields.h5"
     output:
-        extracted_metadata_file = data_dir + "temp/02_metadata_df.txt"
+        extracted_metadata = data_dir + "temp/02_extracted_metadata.txt"
     run:
-        shell(sh_dir + "02_metadata.sh {input.raw_metadata_file} {output.extracted_metadata_file}")
+        shell(sh_dir + "02_metadata.sh {input.metadata_raw} {output.extracted_metadata}")
+
+
+rule filter_qc:
+    input:
+        sqc_raw = raw_data_dir + "ukb_sqc_v2.txt.gz",
+        hdr_raw = raw_data_dir + "ukb_sqc_v2.header.txt.gz",
+        fam_raw = raw_data_dir + "ukb_43247_cal_chr1_v2_s488282.fam",
+        gqc_raw = raw_data_dir + "ukb_geneticSampleLevel_QCs_190527.tsv.gz",
+        metadata_raw = raw_data_dir + "ukb_27581.all_fields.h5"
+    output:
+        qc_filtered = data_dir + "temp/03_qc_filtered.txt",
+        qc_info = results_dir + "03_qc_filter_info.txt"
+    run:
+        shell(sh_dir + "03_filter_qc.sh {input.sqc_raw} {input.hdr_raw} {input.fam_raw} {input.gqc_raw} {input.metadata_raw} {output.qc_filtered} {output.qc_info}")
+
+
+rule final_phenofile:
+    input:
+        defined_phenotype = data_dir + "temp/01_warf_phenotype.txt",
+        extracted_metadata = data_dir + "temp/02_extracted_metadata.txt",
+        qc_filtered = data_dir + "temp/03_qc_filtered.txt"
+    output:
+        meta_qc_samples = data_dir + "temp/04_meta_qc_samples",
+        final_phenofile = data_dir + "ukb_pheno.txt",
+        final_subsample = data_dir + "ukb_warf_subsample.txt"
+    run:
+        shell(sh_dir + "04_phenofile.sh {input.defined_phenotype} {input.extracted_metadata} {input.qc_filtered} {output.meta_qc_samples} {output.final_phenofile} {output.final_subsample}")
+
+
+
+
+
+
+
+
+

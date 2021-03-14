@@ -13,8 +13,8 @@ module load gcc
 module load intel/perflibs
 module load R/4.0.3
 
-export METADATA_FILE=$1
-export METADATA_OUTPUT=$2
+export METADATA_FILE_RAW=$1
+export METADATA_EXTRACTED=$2
 
 cd /home/projects/cu_10039/people/bartho/warfarin/R
 Rscript "Rscripts/02_metadata.R"

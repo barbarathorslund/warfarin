@@ -17,7 +17,7 @@ source("Rscripts/config.R")
 ### Loading issue data file, extracting warfarin related entries, clean bnf codes and issue dates
 
 #Loading dataset
-df_orig <- read_delim(ISSUE_FILE_INPUT, delim="\t", guess_max = 3000)
+df_orig <- read_delim(ISSUE_FILE_RAW, delim="\t", guess_max = 3000)
 
 #removing dots from bnf_codes
 df_orig <- df_orig %>%
@@ -254,9 +254,9 @@ hist(warf_df$avg_daily_dosis, ylim=range(0,0.8), main="Histogram of response var
 dev.off()
 
 # ------------------------------------------------------------------------
-#### Saving temporary dataframe
+#### Saving defined phenotype file
 
-write.table(warf_df, WARF_PHENOTYPE_OUTPUT, col.names = T, row.names = F, quote = F)
+write.table(warf_df, DEFINED_PHENOTYPE, col.names = T, row.names = F, quote = F)
 
 
 

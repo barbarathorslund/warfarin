@@ -8,7 +8,7 @@ library(R.utils)
 # ---------------------------------------------
 
 # Load metadata file
-h5.fn <- UKB_METADATA_FILE
+h5.fn <- METADATA_FILE_RAW
 h5ls(h5.fn)
 
 # only if keeping related set cases.unrel=cases 

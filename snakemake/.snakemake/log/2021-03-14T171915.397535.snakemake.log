@@ -1,0 +1,28 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 1
+Job counts:
+	count	jobs
+	1	filter_qc
+	1	final_phenofile
+	1	metadata
+	1	phenotype
+	4
+
+[Sun Mar 14 17:19:17 2021]
+rule phenotype:
+    input: /home/projects/cu_10039/people/bartho/warfarin/data/ukb/raw/ukb_gp_scripts.txt
+    output: /home/projects/cu_10039/people/bartho/warfarin/data/ukb/temp/01_warf_phenotype.txt
+    jobid: 1
+
+Submitted job 1 with external jobid '31151122'.
+[Sun Mar 14 17:19:48 2021]
+Error in rule phenotype:
+    jobid: 1
+    output: /home/projects/cu_10039/people/bartho/warfarin/data/ukb/temp/01_warf_phenotype.txt
+    cluster_jobid: 31151122
+
+Error executing rule phenotype on cluster (jobid: 1, external: 31151122, jobscript: /home/projects/cu_10039/people/bartho/warfarin/snakemake/.snakemake/tmp.4xdd493c/snakejob.phenotype.1.sh). For error details see the cluster log and the log files of the involved rule(s).
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /home/projects/cu_10039/people/bartho/warfarin/snakemake/.snakemake/log/2021-03-14T171915.397535.snakemake.log

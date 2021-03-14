@@ -8,11 +8,11 @@ add_config <- function(name, value) {
 }
 
 # Main paths
-
 add_config("DATA_DIR", "../data")
 add_config("KING_DATA_DIR", "../data/king")
 add_config("RAW_DATA_DIR", "../data/raw")
 add_config("TEMP_DIR", "../data/temp")
+add_config("RESULTS_DIR", "../results/plots")
 add_config("PLOTS_DIR", "../results/plots")
 
 # Files
@@ -20,16 +20,22 @@ add_config("PLOTS_DIR", "../results/plots")
 ## UKB files
 
 # 01_phenotype.R
-add_config("ISSUE_FILE_INPUT", paste(RAW_DATA_DIR ,"ukb_gp_scripts.txt", sep= "/"))
-add_config("WARF_PHENOTYPE_OUTPUT", paste(TEMP_DIR, "01_warf_df.txt", sep = "/"))
+add_config("ISSUE_FILE_RAW", paste(RAW_DATA_DIR ,"ukb_gp_scripts.txt", sep= "/"))
+add_config("DEFINED_PHENOTYPE", paste(TEMP_DIR, "01_warf_phenotype.txt", sep = "/"))
 
 # 02_metadata.R
-add_config("METADATA_FILE", paste(RAW_DATA_DIR,"ukb_27581.all_fields.h5", sep = '/'))
-add_config("METADATA_OUTPUT", paste(TEMP_DIR, "02_metadata_df.txt", sep = "/"))
+add_config("METADATA_FILE_RAW", paste(RAW_DATA_DIR,"ukb_27581.all_fields.h5", sep = '/'))
+add_config("METADATA_EXTRACTED", paste(TEMP_DIR, "02_extracted_metadata.txt", sep = "/"))
 
-# 03_QCtable.R
-add_config("UKB_SQC_FILE", paste(RAW_DATA_DIR ,"ukb_sqc_v2.txt.gz", sep= "/"))
-add_config("UKB_HDR_FILE", paste(RAW_DATA_DIR ,"ukb_sqc_v2.header.txt.gz", sep= "/"))
+# 03a_QCtable.R
+add_config("SQC_FILE_RAW", paste(RAW_DATA_DIR ,"ukb_sqc_v2.txt.gz", sep= "/"))
+add_config("HDR_FILE_RAW", paste(RAW_DATA_DIR ,"ukb_sqc_v2.header.txt.gz", sep= "/"))
+add_config("FAM_FILE_RAW", paste(RAW_DATA_DIR ,"ukb_43247_cal_chr1_v2_s488282.fam", sep= "/"))
+add_config("GQC_FILE_RAW", paste(RAW_DATA_DIR, "ukb_geneticSampleLevel_QCs_190527.tsv.gz", sep="/"))
+add_config("QC_FILTERED", paste(TEMP_DIR, "03_qc_filtered.txt", sep = "/"))
+add_config("QC_FILTER_INFO", paste(RESULTS_DIR, "03_qc_filter_info.txt", sep = "/"))
 
-add_config("UKB_FAM_FILE", paste(RAW_DATA_DIR ,"ukb_43247_cal_chr1_v2_s488282.fam", sep= "/"))
-add_config("UKB_GQC_FILE", paste(RAW_DATA_DIR, "ukb_geneticSampleLevel_QCs_190527.tsv.gz", sep="/"))
+# 04_phenofile.R
+add_config("META_QC_SAMPLES", paste(TEMP_DIR, "04_meta_qc_samples.txt", sep = "/"))
+add_config("FINAL_PHENOFILE", paste(DATA_DIR, "ukb_pheno.txt", sep = "/"))
+add_config("FINAL_SUBSAMPLE", paste(DATA_DIR, "ukb_warf_subsample.txt", sep = "/"))
