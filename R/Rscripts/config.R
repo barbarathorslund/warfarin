@@ -24,9 +24,12 @@ add_config("ISSUE_FILE_INPUT", paste(RAW_DATA_DIR ,"ukb_gp_scripts.txt", sep= "/
 add_config("WARF_PHENOTYPE_OUTPUT", paste(TEMP_DIR, "01_warf_df.txt", sep = "/"))
 
 # 02_metadata.R
+add_config("METADATA_FILE", paste(RAW_DATA_DIR,"ukb_27581.all_fields.h5", sep = '/'))
+add_config("METADATA_OUTPUT", paste(TEMP_DIR, "02_metadata_df.txt", sep = "/"))
+
+# 03_QCtable.R
 add_config("UKB_SQC_FILE", paste(RAW_DATA_DIR ,"ukb_sqc_v2.txt.gz", sep= "/"))
 add_config("UKB_HDR_FILE", paste(RAW_DATA_DIR ,"ukb_sqc_v2.header.txt.gz", sep= "/"))
 
 add_config("UKB_FAM_FILE", paste(RAW_DATA_DIR ,"ukb_43247_cal_chr1_v2_s488282.fam", sep= "/"))
 add_config("UKB_GQC_FILE", paste(RAW_DATA_DIR, "ukb_geneticSampleLevel_QCs_190527.tsv.gz", sep="/"))
-add_config("UKB_METADATA_FILE", paste(RAW_DATA_DIR,"ukb_27581.all_fields.h5", sep = '/'))

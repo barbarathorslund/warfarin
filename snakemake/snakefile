@@ -3,12 +3,22 @@ data_dir = "/home/projects/cu_10039/people/bartho/warfarin/data/ukb/"
 raw_data_dir = "/home/projects/cu_10039/people/bartho/warfarin/data/ukb/raw/"
 sh_dir = "/home/projects/cu_10039/people/bartho/warfarin/sh/"
 
-#ruleorder: phenotype
+
+ruleorder: phenotype > metadata
 
 rule phenotype:
     input:
-        issue_file_path = raw_data_dir + "ukb_gp_scripts.txt"
+        issue_file = raw_data_dir + "ukb_gp_scripts.txt"
     output:
-        output_path = data_dir + "temp/01_warf_df.txt"
+        phenotype_file = data_dir + "temp/01_warf_df.txt"
     run:
-        shell(sh_dir + "01_phenotype.sh {input.issue_file_path} {output.output_path}")
+        shell(sh_dir + "01_phenotype.sh {input.issue_file} {output.output_file}")
+
+
+rule metadata:
+    input:
+        raw_metadata_file = raw_data_dir + "ukb_27581.all_fields.h5"
+    output:
+        extracted_metadata_file = data_dir + "temp/02_metadata_df.txt"
+    run:
+        shell(sh_dir + "02_metadata.sh {input.raw_metadata_file} {output.extracted_metadata_file}")

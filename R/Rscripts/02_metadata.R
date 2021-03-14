@@ -16,7 +16,7 @@ source("Rscripts/config.R")
 ##########################
 
 # Getting meta data file as df
-h5.fn <- UKB_METADATA_FILE
+h5.fn <- METADATA_FILE
 h5ls(h5.fn)
 metadata_df = as.data.frame(h5read(h5.fn,"sample.id"))
 sample.id <- metadata_df
@@ -81,7 +81,7 @@ metadata_df$bmi[metadata_df$bmi == -9999] <- NA
 # ------------------------------------------------------------------------
 #### Saving temporary dataframe
 
-write.table(metadata_df, paste(TEMP_DIR, "02_metadata_df.txt", sep = "/"), col.names = T, row.names = F, quote = F)
+write.table(metadata_df, METADATA_OUTPUT, col.names = T, row.names = F, quote = F)
 
 
 
