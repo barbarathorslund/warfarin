@@ -1,0 +1,11 @@
+
+data_dir = "/home/projects/cu_10039/people/bartho/warfarin/data"
+sh_dir = "/home/projects/cu_10039/people/bartho/warfarin/sh"
+Rscript_dir = "/home/projects/cu_10039/people/bartho/warfarin/R/Rscripts"
+
+
+ruleorder: phenotype >
+
+rule phenotype:
+    input:
+        issue_data = data_dir + ""

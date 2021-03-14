@@ -1,0 +1,6 @@
+WARNING: Overlap is < 50% between --famFile and sample file:
+         ../data/raw/saigeSampleFile.txt
+NOTE: Using all-1s vector (constant term) in addition to specified covariates
+NOTE: Using all-1s vector (constant term) in addition to specified covariates
+NOTE: Using all-1s vector (constant term) in addition to specified covariates
+NOTE: Using all-1s vector (constant term) in addition to specified covariates
