@@ -1,9 +1,9 @@
 #!/bin/sh
 ### set erorr and output files
-###PBS -r 04_bolt.e
-###PBS -o 04_bolt.o
+###PBS -r log/bolt.e
+###PBS -o log/bolt.o
 ###set name of the job
-#PBS -N 04_bolt
+#PBS -N bolt
 ### ser number of nodes, cores, memory and time
 #PBS -l nodes=1:ppn=21,mem=136gb,walltime=36:00:00
 ###send an email when the job is done
@@ -18,7 +18,7 @@ module load tabix/1.2.1
 module load bolt-lmm/2.3.4
 
 N=$1
-datapath=../data
+datapath=../data/ukb
 
 bolt \
 --bed=$datapath/modelSNP.bed \
@@ -28,6 +28,7 @@ bolt \
 --phenoCol=logDose \
 --covarFile=$datapath/ukb_cov.txt \
 --qCovarCol=yob \
+--qCovarCol=bmi \
 --qCovarCol=PC{1:10} \
 --covarCol=sex \
 --covarCol=genotyping.array \
@@ -38,11 +39,11 @@ bolt \
 --LDscoresMatchBp \
 --geneticMapFile=/services/tools/bolt-lmm/2.3.2/tables/genetic_map_hg19_withX.txt.gz \
 --numThreads=23 \
---statsFile=$datapath/bolt_out/chr${N}.stats.gz \
+--statsFile=$datapath/bolt_out_bmitest/chr${N}.stats.gz \
 --bgenMinMAF=0.01 \
 --bgenMinINFO=0.7 \
 --verboseStats \
 --noBgenIDcheck \
---statsFileBgenSnps=$datapath/bolt_out/chr${N}.bgen.stats.gz \
+--statsFileBgenSnps=$datapath/bolt_out_bmitest/chr${N}.bgen.stats.gz \
 --bgenFile=/home/projects/cu_10039/data/UKBB/downloadDump/EGAD00010001474/ukb_imp_chr${N}_v3.bgen \
 --sampleFile=$datapath/raw/saigeSampleFile.txt 

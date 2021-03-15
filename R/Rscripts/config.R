@@ -37,5 +37,19 @@ add_config("QC_FILTER_INFO", paste(RESULTS_DIR, "03_qc_filter_info.txt", sep = "
 
 # 04_phenofile.R
 add_config("META_QC_SAMPLES", paste(TEMP_DIR, "04_meta_qc_samples.txt", sep = "/"))
-add_config("FINAL_PHENOFILE", paste(DATA_DIR, "ukb_pheno.txt", sep = "/"))
-add_config("FINAL_SUBSAMPLE", paste(DATA_DIR, "ukb_warf_subsample.txt", sep = "/"))
+add_config("FINAL_PHENOFILE", paste(DATA_DIR, "pheno.txt", sep = "/"))
+add_config("FINAL_SUBSAMPLE", paste(DATA_DIR, "subsample_id.txt", sep = "/"))
+
+# 07_king_relatedpairs.R
+add_config("KING_KIN_FILE", paste(KING_DATA_DIR, "king.kin", sep = "/"))
+add_config("KING_KIN0_FILE", paste(KING_DATA_DIR, "king.kin0", sep = "/"))
+add_config("EXCLUDE_RELATED", paste(DATA_DIR, "excluderelated.txt", sep = "/"))
+
+#10_covarfile.R
+add_config("META_QC_SAMPLES", paste(TEMP_DIR, "04_meta_qc_samples_df.txt"))
+add_config("UNRELATED_PC", paste(DATA_DIR, "pcs.txt", sep ="/"))
+add_config("RELATED_PC", paste(DATA_DIR, "projections.txt", sep = "/"))
+add_config("COVARFILE", paste(DATA_DIR, "cov.txt", sep = "/"))
+
+
+

@@ -6,13 +6,4 @@
 .RDataTmp
 sh/log/*.e
 sh/log/*.o
-snakemake/auxiliary
-snakemake/conda
-snakemake/incomplete
-snakemake/locks
-snakemake/log
-snakemake/metadata
-snakemake/shadow
-snakemake/singularity
-snakemake/tmpa8dkv4fa
-snakemake/snakejob*
+snakemake/.snakemake

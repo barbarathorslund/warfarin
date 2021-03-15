@@ -1,7 +1,7 @@
 #!/bin/sh
 ### set error and output files
-###PBS -e plink.e
-###PBS -o plink.o
+#PBS -e /home/projects/cu_10039/people/bartho/warfarin/sh/log/05_plink_subsample.e
+#PBS -o /home/projects/cu_10039/people/bartho/warfarin/sh/log/05_plink_subsample.o
 ### set name of the job
 #PBS -N plink
 ### set number of nodes, cores, memory and time
@@ -11,11 +11,16 @@
 
 #Prepare files using plink
 
+module load tools
+module load ngs
 module load plink2/1.90beta5.4
 
-cd ../data
+GENOTYPE_RAW=$1
+#/home/projects/cu_10039/data/UKBB/Genotype/EGAD00010001497/ukb
+KEEP_SAMPLES=$2
+GENOTYPE_SUBSAMPLE=$3
 
 #keep individuals of interest
-plink --bfile /home/projects/cu_10039/data/UKBB/Genotype/EGAD00010001497/ukb --keep ukb_warf_subsample.txt --make-bed --out king/unimputed_king
+plink --bfile "${GENOTYPE_RAW}" --keep "${KEEP_SAMPLES}" --make-bed --out "${GENOTYPE_SUBSAMPLE}"
 
 # Potentially: first part of King_2.R to modify the fam file

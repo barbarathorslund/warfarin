@@ -6,4 +6,4 @@
 
 cd $PBS_O_WORKDIR
 
-bash 04_bolt.sh ${PBS_ARRAYID}
+bash bolt.sh ${PBS_ARRAYID}

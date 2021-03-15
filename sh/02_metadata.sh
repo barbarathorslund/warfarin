@@ -1,7 +1,7 @@
 #!/bin/sh
 ### set error and output files
-###PBS -e /home/projects/cu_10039/people/bartho/warfarin/sh/log/02_metadata.e
-###PBS -o /home/projects/cu_10039/people/bartho/warfarin/sh/log/02_metadata.o
+#PBS -e /home/projects/cu_10039/people/bartho/warfarin/sh/log/02_metadata.e
+#PBS -o /home/projects/cu_10039/people/bartho/warfarin/sh/log/02_metadata.o
 ### set name of the job
 #PBS -N 02_metadata
 ### set number of nodes, cores, memory and time

@@ -28,12 +28,11 @@ library(data.table)
 # Load config
 source("Rscripts/config.R")
 
-kingkin = fread(paste(KING_DATA_DIR, "king.kin", sep = "/"))
+kingkin = fread(KING_KIN_FILE)
 #head(kingkin)
-#
 
 #Load king output file
-king = fread(paste(KING_DATA_DIR, "king.kin0", sep = "/"), header = T) #stringAsFactors = F) 
+king = fread(KING_KIN0_FILE, header = T) #stringAsFactors = F) 
 #head(king)
 #dim(king) 
 #  x rows with relationship pairs
@@ -168,7 +167,7 @@ excluderelated <- data.frame(unique(kingrelatedpairs$remove), unique(kingrelated
 #dim(excluderelated)
 # x individuals have to be removed
 
-write.table(excluderelated, file = paste(DATA_DIR, "excluderelated.txt", sep = "/"), sep="\t", quote = F, row.names = F, col.names = F)
+write.table(excluderelated, file = EXCLUDE_RELATED, sep="\t", quote = F, row.names = F, col.names = F)
 
 # How many 1st and 2nd degree?
 related_first_second = subset (kingrelatedpairs, Kinship>0.354 | Kinship>0.0884 & Kinship<0.177)
@@ -184,5 +183,5 @@ dim(excluderelated) #
 
 #
 
-### Now run 3_plink_flashPCA.sh  
+### Now to 3_plink_flashPCA.sh  
  

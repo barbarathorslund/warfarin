@@ -1,7 +1,7 @@
 #!/bin/sh
 ### set error and output files
-###PBS -e /home/projects/cu_10039/people/bartho/warfarin/sh/log/03_filter_qc.e
-###PBS -o /home/projects/cu_10039/people/bartho/warfarin/sh/log/03_filter_qc.o
+#PBS -e /home/projects/cu_10039/people/bartho/warfarin/sh/log/03_filter_qc.e
+#PBS -o /home/projects/cu_10039/people/bartho/warfarin/sh/log/03_filter_qc.o
 ### set name of the job
 #PBS -N 03_filter_qc
 ### set number of nodes, cores, memory and time

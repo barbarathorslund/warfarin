@@ -1,7 +1,7 @@
 #!/bin/sh
 ### set error and output files
-###PBS -e /home/projects/cu_10039/people/bartho/warfarin/sh/log/04_phenofile.e
-###PBS -o /home/projects/cu_10039/people/bartho/warfarin/sh/log/04_phenofile.o
+#PBS -e /home/projects/cu_10039/people/bartho/warfarin/sh/log/04_phenofile.e
+#PBS -o /home/projects/cu_10039/people/bartho/warfarin/sh/log/04_phenofile.o
 ### set name of the job
 #PBS -N 04_phenofile
 ### set number of nodes, cores, memory and time
