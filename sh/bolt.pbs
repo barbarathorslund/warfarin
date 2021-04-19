@@ -1,8 +1,12 @@
-#PBS -N step2
-#PBS -m n
-#PBS -l nodes=1:ppn=21
-#PBS -l mem=136gb
-#PBS -l walltime=36:00:00
+#### set erorr and output files
+#PBS -r log/bolt.e
+#PBS -o log/bolt.o
+####set name of the job
+#PBS -N bolt
+#### set number of nodes, cores, memory and time
+#PBS -l nodes=1:ppn=21,mem=136gb,walltime=36:00:00
+#### send an email when the job is done
+#PBS -m ae -M barbarathorslund@hotmail.com
 
 cd $PBS_O_WORKDIR
 

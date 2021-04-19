@@ -21,14 +21,13 @@ N=$1
 datapath=../data/ukb
 
 bolt \
---bed=$datapath/modelSNP.bed \
---bim=$datapath/modelSNP.bim \
---fam=$datapath/modelSNP.fam \
---phenoFile=$datapath/ukb_pheno.txt \
+--bed=$datapath/genotype/modelSNP.bed \
+--bim=$datapath/genotype/modelSNP.bim \
+--fam=$datapath/genotype/modelSNP.fam \
+--phenoFile=$datapath/pheno.txt \
 --phenoCol=logDose \
---covarFile=$datapath/ukb_cov.txt \
+--covarFile=$datapath/cov.txt \
 --qCovarCol=yob \
---qCovarCol=bmi \
 --qCovarCol=PC{1:10} \
 --covarCol=sex \
 --covarCol=genotyping.array \
@@ -39,11 +38,11 @@ bolt \
 --LDscoresMatchBp \
 --geneticMapFile=/services/tools/bolt-lmm/2.3.2/tables/genetic_map_hg19_withX.txt.gz \
 --numThreads=23 \
---statsFile=$datapath/bolt_out_bmitest/chr${N}.stats.gz \
+--statsFile=$datapath/bolt_out/chr${N}.stats.gz \
 --bgenMinMAF=0.01 \
 --bgenMinINFO=0.7 \
 --verboseStats \
 --noBgenIDcheck \
---statsFileBgenSnps=$datapath/bolt_out_bmitest/chr${N}.bgen.stats.gz \
+--statsFileBgenSnps=$datapath/bolt_out/chr${N}.bgen.stats.gz \
 --bgenFile=/home/projects/cu_10039/data/UKBB/downloadDump/EGAD00010001474/ukb_imp_chr${N}_v3.bgen \
 --sampleFile=$datapath/raw/saigeSampleFile.txt 
