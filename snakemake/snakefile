@@ -47,8 +47,6 @@ rule final_phenofile:
 	run:
 		shell(sh_dir + "04_phenofile.sh {input.defined_phenotype} {input.extracted_metadata} {input.qc_filtered} {output.meta_qc_samples} {output.final_phenofile} {output.final_subsample}")
 
-####
-
 rule plink_subsample:
 	input:
 		final_subsample = data_dir + "subsample_ids.txt",

@@ -1,7 +1,0 @@
-WARNING: Overlap is < 50% between --famFile and sample file:
-         ../data/ukb/raw/saigeSampleFile.txt
-NOTE: Using all-1s vector (constant term) in addition to specified covariates
-WARNING: 48 of 5582 samples passing previous QC have missing covariates
-  --covarUseMissingIndic is not set, so these samples will be removed
-NOTE: Using all-1s vector (constant term) in addition to specified covariates
-NOTE: Using all-1s vector (constant term) in addition to specified covariates

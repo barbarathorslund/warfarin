@@ -20,7 +20,7 @@ gwas.dat <- data.frame(combined_bolt_out)
 
 #Slicing the data to make plotting more computationally efficient
 sig.dat <- gwas.dat %>% 
-  subset(P_BOLT_LMM_INF < 0.05)
+  subset(P_BOLT_LMM < 0.05)
 # notsig.dat <- gwas.dat %>% 
 #   subset(PVAL >= 0.05) %>%
 #   slice(sample(nrow(.), nrow(.) / 10))
@@ -47,7 +47,7 @@ for (i in unique(gwas.dat$CHR)){
 axis.set <- gwas.dat %>% 
   group_by(CHR) %>% 
   summarize(center = (max(BPcum) + min(BPcum)) / 2)
-ylim <- abs(floor(log10(min(gwas.dat$P_BOLT_LMM_INF)))) + 2 
+ylim <- abs(floor(log10(min(gwas.dat$P_BOLT_LMM)))) + 2 
 sig <- 5e-8
 
 yname <- expression(paste("-Log"[10]*"(",italic("P"),")"))
@@ -100,7 +100,7 @@ table(gwas.dat$annotate)
 
 
 #Plot the data
-manhplot <- ggplot(gwas.dat, aes(x = BPcum, y =-log10(P_BOLT_LMM_INF), 
+manhplot <- ggplot(gwas.dat, aes(x = BPcum, y =-log10(P_BOLT_LMM), 
                                  color = as.factor(CHR))) +
   geom_point(alpha = 0.8) +
   geom_hline(yintercept = -log10(sig), color = "red3", linetype = "dashed", size=0.3) + 

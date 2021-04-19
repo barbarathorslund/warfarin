@@ -11,9 +11,9 @@ l <- lapply(all.files, fread)
 ukb_combined_bolt_out <- rbindlist(l)
 
 # Write file for 
-write.table(ukb_combined_bolt_out, paste(DATA_DIR, "ukb_combined_bolt_out.txt", sep = "/"), col.names = T, row.names = F, quote = F)
+write.table(ukb_combined_bolt_out, paste(DATA_DIR, "ukb_combined_bolt_out_bmitest.txt", sep = "/"), col.names = T, row.names = F, quote = F)
 
-# subset significant SNPs only and see how many chromosomes have significant SNPs
+# subset significant SNPs only and see how many chromosomes have significant SNPs (threshold of 5*10^-8)
 sign1 <- ukb_combined_bolt_out %>% filter(P_BOLT_LMM_INF < 5E-08)
 table(sign1$CHR)
 

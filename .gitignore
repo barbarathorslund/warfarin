@@ -7,3 +7,6 @@
 sh/log/*.e
 sh/log/*.o
 snakemake/.snakemake
+/EasyQC
+EasyQC*
+ukb_combined_bolt_out.txt.gz
