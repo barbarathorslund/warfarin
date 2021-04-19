@@ -10,7 +10,7 @@ rule phenotype:
 	input:
 		issues_raw = raw_data_dir + "ukb_gp_scripts.txt"
 	output:
-		defined_phenotype = data_dir + "temp/01_defined_phenotype.txt"
+		defined_phenotype = data_dir + "Rinter/01_defined_phenotype.txt"
 	run:
 		shell(sh_dir + "01_phenotype.sh {input.issues_raw} {output.defined_phenotype}")
 
@@ -18,7 +18,7 @@ rule metadata:
 	input:
 		metadata_raw = raw_data_dir + "ukb_27581.all_fields.h5"
 	output:
-		extracted_metadata = data_dir + "temp/02_extracted_metadata.txt"
+		extracted_metadata = data_dir + "Rinter/02_extracted_metadata.txt"
 	run:
 		shell(sh_dir + "02_metadata.sh {input.metadata_raw} {output.extracted_metadata}")
 
@@ -30,24 +30,22 @@ rule filter_qc:
 		gqc_raw = raw_data_dir + "ukb_geneticSampleLevel_QCs_190527.tsv.gz",
 		metadata_raw = raw_data_dir + "ukb_27581.all_fields.h5"
 	output:
-		qc_filtered = data_dir + "temp/03_qc_filtered.txt",
+		qc_filtered = data_dir + "Rinter/03_qc_filtered.txt",
 		qc_info = results_dir + "03_qc_filter_info.txt"
 	run:
 		shell(sh_dir + "03_filter_qc.sh {input.sqc_raw} {input.hdr_raw} {input.fam_raw} {input.gqc_raw} {input.metadata_raw} {output.qc_filtered} {output.qc_info}")
 
 rule final_phenofile:
 	input:
-		defined_phenotype = data_dir + "temp/01_defined_phenotype.txt",
-		extracted_metadata = data_dir + "temp/02_extracted_metadata.txt",
-		qc_filtered = data_dir + "temp/03_qc_filtered.txt"
+		defined_phenotype = data_dir + "Rinter/01_defined_phenotype.txt",
+		extracted_metadata = data_dir + "Rinter/02_extracted_metadata.txt",
+		qc_filtered = data_dir + "Rinter/03_qc_filtered.txt"
 	output:
-		meta_qc_samples = data_dir + "temp/04_meta_qc_samples",
+		meta_qc_samples = data_dir + "Rinter/04_meta_qc_samples",
 		final_phenofile = data_dir + "pheno.txt",
 		final_subsample = data_dir + "subsample_ids.txt"
 	run:
 		shell(sh_dir + "04_phenofile.sh {input.defined_phenotype} {input.extracted_metadata} {input.qc_filtered} {output.meta_qc_samples} {output.final_phenofile} {output.final_subsample}")
-
-####
 
 rule plink_subsample:
 	input:
@@ -123,24 +121,12 @@ rule flashpca:
 
 rule covarfile:
 	input: 
-		meta_qc_samples = data_dir + "temp/04_meta_qc_samples",
+		meta_qc_samples = data_dir + "Rinter/04_meta_qc_samples",
 		unrelated_pc = data_dir + "flashpca/pcs.txt",
 		related_pc = data_dir + "flashpca/projections.txt"
 	output:
 		covarfile = data_dir + "cov.txt"
 	run:
 		shell(sh_dir + "10_covarfile.sh {input.meta_qc_samples} {input.unrelated_pc} {input.related_pc} {output.covarfile}")
-
-
-
-
-
-
-
-
-
-
-
-
 
 
