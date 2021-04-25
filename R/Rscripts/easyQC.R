@@ -58,7 +58,7 @@ sum_stat <- sum_stat[,-c("SNP","Strand","N","CHRPOS")]
 setnames(sum_stat, "rsmid", "RS")
 sum_stat <- subset(sum_stat, !duplicated(RS))
 sum_stat <- sum_stat %>%
-  relocate(RS, .before(STRAND))
+  relocate(RS)
 
 # Write
 write.table(sum_stat, file = SUM_STAT_POST_RSANN, col.names = T, row.names = F, quote = F)

@@ -78,7 +78,7 @@ QC_filter_info <- QC_filter_info %>% mutate(het_missing = length(qc_df$sample.id
 #qc_df <- subset(qc_df, genKin=="0")
 
 # ------------------------------------------------------------------------
-#### Saving temporary dataframe
+#### Write files
 
 write.table(qc_df, QC_FILTERED, col.names = T, row.names = F, quote = F)
 write.table(QC_filter_info, QC_FILTER_INFO, col.names = T, row.names = F, quote = F)

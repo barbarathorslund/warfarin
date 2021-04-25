@@ -4,27 +4,6 @@
 
 library(data.table)
 
-#Load plink files
-#Load fam
-#fam = read.table("unimputed.fam", header=F)
-#head(fam)
-#dim(fam)
-#
-
-# Change V1 and V2 column to numbers (1 up to number of rows), King does not like CHB numbers
-#fam$V1 = 1:nrow(fam)
-#fam$V2 = 1:nrow(fam)
-#head(fam)
-
-# Write new fam for king
-#write.table(fam, file= "unimputed_king.fam", sep = "\t", quote = F, row.names = F, col.names = F)
-
-# Go to genetic_data folder and cp unimputed.bed/bim to unimputed_king.bed/bim 
-#cp unimputed.bed unimputed_king.bed
-#cp unimputed.bim unimputed_king.bim
-
-#Now run 2_king.pbs and return to this script
-
 # Load config
 source("Rscripts/config.R")
 
