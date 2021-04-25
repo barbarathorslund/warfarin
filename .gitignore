@@ -9,3 +9,4 @@ sh/log/*.o
 snakemake/.snakemake
 /EasyQC
 ukb_combined_bolt_out.txt.gz
+/results/meta

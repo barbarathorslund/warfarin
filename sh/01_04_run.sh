@@ -1,11 +1,11 @@
 #!/bin/sh
 ### set error and output files
-###PBS -e plink.e
-###PBS -o plink.o
+###PBS -e Rscript.e
+###PBS -o Rscript.o
 ### set name of the job
-#PBS -N plink
+#PBS -N Rscript
 ### set number of nodes, cores, memory and time
-#PBS -l nodes=1:ppn=2,mem=10gb,walltime=00:30:00
+#PBS -l nodes=1:ppn=2,mem=10gb,walltime=4:00:00
 
 while [ "$1" != "" ]; do
     case $1 in
@@ -31,13 +31,13 @@ cd "../R"
 
 
 # Run scripts
-echo "Running Rscripts 01-04"
+echo "Running Rscript"
 
 #R < "Rscripts/01_phenotype.R" --no-save
 #R < "Rscripts/02_metadata.R" --no-save
 #R < "Rscripts/03a_QCtable.R" --no-save
 #R < "Rscripts/04_pheno_file.R" --no-save
 #R < "Rscripts/05_king.R" --no-save
-R < "Rscripts/06_covar_file.R" --no-save
+R < "Rscripts/easyQC.R" --no-save
 
 echo "Finished without errors"

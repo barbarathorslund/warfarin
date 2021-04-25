@@ -55,11 +55,10 @@ add_config("COVARFILE", paste(DATA_DIR, "cov.txt", sep = "/"))
 
 #12_merge_bolt.R
 
-
 #easyQC.R
 add_config("COMBINED_BOLT", paste(BOLT_OUT_DATA_DIR, "ukb_combined_bolt_out.txt",  sep = "/"))
 add_config("COMBINED_BOLT_V2", paste(BOLT_OUT_DATA_DIR, "ukb_combined_bolt_v2.tsv", sep = "/"))
-
+add_config("RSMID_FILE", paste(RAW_DATA_DIR, "rsmid_machsvs_mapb37.1000G_p3v5.merged_mach_impute.v3.corrpos.gz", sep = "/"))
 add_config("SUM_STAT_PRE_RSANN", paste(EASYQC_OUT_DATA_DIR, "CLEANED.warf.txt", sep = "/"))
 add_config("SUM_STAT_POST_RSANN", paste(DATA_DIR, "ukb_warf_sumstat.txt", sep = "/"))
 
