@@ -1,5 +1,5 @@
 add_config <- function(name, value) {
-  #' Defines a config variable by enviromental variables or default value
+  #' Defines a config variable by environmental variables or default value
   #'
   #' Provides the name of the config variable
   #' @param name The name of the variable
@@ -12,6 +12,7 @@ add_config("DATA_DIR", "../data/ukb")
 add_config("KING_DATA_DIR", "../data/ukb/king")
 add_config("RAW_DATA_DIR", "../data/ukb/raw")
 add_config("RINTER_DIR", "../data/ukb/Rinter")
+add_config("PRS_DATA_DIR", "../data/ukb/prs")
 add_config("RESULTS_DIR", "../results")
 add_config("PLOTS_DIR", "../results/plots")
 add_config("BOLT_OUT_DATA_DIR", "../data/ukb/bolt_out")
@@ -26,7 +27,7 @@ add_config("ISSUE_FILE_RAW", paste(RAW_DATA_DIR ,"ukb_gp_scripts.txt", sep= "/")
 add_config("DEFINED_PHENOTYPE", paste(RINTER_DIR, "01_warf_phenotype.txt", sep = "/"))
 
 # 02_metadata.R
-add_config("METADATA_FILE_RAW", paste(RAW_DATA_DIR,"ukb_27581.all_fields.h5", sep = '/'))
+add_config("METADATA_FILE_RAW", paste(RAW_DATA_DIR,"ukb45051.all_fields.h5", sep = '/'))
 add_config("METADATA_EXTRACTED", paste(RINTER_DIR, "02_extracted_metadata.txt", sep = "/"))
 
 # 03a_QCtable.R
@@ -39,26 +40,31 @@ add_config("QC_FILTER_INFO", paste(RESULTS_DIR, "03_qc_filter_info.txt", sep = "
 
 # 04_phenofile.R
 add_config("META_QC_SAMPLES", paste(RINTER_DIR, "04_meta_qc_samples.txt", sep = "/"))
-add_config("FINAL_PHENOFILE", paste(DATA_DIR, "pheno.txt", sep = "/"))
-add_config("FINAL_SUBSAMPLE", paste(DATA_DIR, "subsample_id.txt", sep = "/"))
+add_config("FINAL_PHENOFILE", paste(RINTER_DIR, "pheno.txt", sep = "/"))
+add_config("FINAL_SUBSAMPLE", paste(RINTER_DIR, "subsample_id.txt", sep = "/"))
 
 # 07_king_relatedpairs.R
 add_config("KING_KIN_FILE", paste(KING_DATA_DIR, "king.kin", sep = "/"))
 add_config("KING_KIN0_FILE", paste(KING_DATA_DIR, "king.kin0", sep = "/"))
-add_config("EXCLUDE_RELATED", paste(DATA_DIR, "excluderelated.txt", sep = "/"))
+add_config("EXCLUDE_RELATED", paste(KING_DATA_DIR, "excluderelated.txt", sep = "/"))
 
-#10_covarfile.R
+# 10_covarfile.R
 add_config("META_QC_SAMPLES", paste(RINTER_DIR, "04_meta_qc_samples_df.txt"))
-add_config("UNRELATED_PC", paste(DATA_DIR, "pcs.txt", sep ="/"))
-add_config("RELATED_PC", paste(DATA_DIR, "projections.txt", sep = "/"))
-add_config("COVARFILE", paste(DATA_DIR, "cov.txt", sep = "/"))
+add_config("UNRELATED_PC", paste(DATA_DIR, "flashpca/pcs.txt", sep ="/"))
+add_config("RELATED_PC", paste(DATA_DIR, "flashpca/projections.txt", sep = "/"))
+add_config("COVARFILE", paste(RINTER_DIR, "cov.txt", sep = "/"))
 
-#12_merge_bolt.R
+# 12_merge_bolt.R
 
-#easyQC.R
+# easyQC.R
 add_config("COMBINED_BOLT", paste(BOLT_OUT_DATA_DIR, "ukb_combined_bolt_out.txt",  sep = "/"))
 add_config("COMBINED_BOLT_V2", paste(BOLT_OUT_DATA_DIR, "ukb_combined_bolt_v2.tsv", sep = "/"))
 add_config("RSMID_FILE", paste(RAW_DATA_DIR, "rsmid_machsvs_mapb37.1000G_p3v5.merged_mach_impute.v3.corrpos.gz", sep = "/"))
 add_config("SUM_STAT_PRE_RSANN", paste(EASYQC_OUT_DATA_DIR, "CLEANED.warf.txt", sep = "/"))
 add_config("SUM_STAT_POST_RSANN", paste(DATA_DIR, "ukb_warf_sumstat.txt", sep = "/"))
+
+
+# prs_stroke_event.R
+add_config("STROKE_EVENT", paste(PRS_DATA_DIR, "/prs_stroke_event.txt",  sep = "/"))
+add_config("PRS_SUBSAMPLE_ID", paste(PRS_DATA_DIR,"prs_idsubset.txt", sep= "/"))
 
