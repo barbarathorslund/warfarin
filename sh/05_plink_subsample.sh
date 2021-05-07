@@ -22,5 +22,3 @@ GENOTYPE_SUBSAMPLE=$3
 
 #keep individuals of interest
 plink --bfile "${GENOTYPE_RAW}" --keep "${KEEP_SAMPLES}" --make-bed --out "${GENOTYPE_SUBSAMPLE}"
-
-# Potentially: first part of King_2.R to modify the fam file

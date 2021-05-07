@@ -2,7 +2,7 @@ module load tools
 module load ngs
 module load plink2/1.90beta5.3
 
-datapath=../data/ukb/prs/genotype
+datapath=../data/ukb/prs/genotype_stroke
 
 cd $datapath
 

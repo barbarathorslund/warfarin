@@ -2,7 +2,7 @@ module load tools
 module load ngs
 module load plink2/1.90beta5.3
 
-datapath=../data/ukb/prs/genotype
+datapath=../data/ukb/prs/genotype_stroke
 
 cd $datapath
 
@@ -25,16 +25,10 @@ plink \
     --indep-pairwise 200 50 0.25 \
     --out genotype_prs_subsample.QC
 
-# Calculate hetrerozygosity rates
+# Calculate heterozygosity rates
 plink \
     --bfile genotype_prs_subsample \
     --extract genotype_prs_subsample.QC.prune.in \
     --keep genotype_prs_subsample.QC.fam \
     --het \
     --out genotype_prs_subsample.QC
-
-# Remove related
-#plink \
-#    --bfile /home/projects/cu_10039/people/bartho/warfarin/data/ukb/prs/genotype/genotype_prs_subsample \
-#    --rel-cutoff 0.125 \
-#    --out /home/projects/cu_10039/people/bartho/warfarin/data/ukb/flashpca/prs_related
