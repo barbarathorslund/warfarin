@@ -15,12 +15,12 @@ library(gg.gap)
 source("Rscripts/config.R")
 
 #Load data
-combined_bolt_out <- fread(paste(DATA_DIR, "ukb_combined_bolt_out.txt", sep = "/"))
+combined_bolt_out <- fread("/Users/barbara/Desktop/meta_warf_sumstat_log.txt")
 gwas.dat <- data.frame(combined_bolt_out)
 
 #Slicing the data to make plotting more computationally efficient
 sig.dat <- gwas.dat %>% 
-  subset(P_BOLT_LMM < 0.05)
+  subset(P < -log10(0.05))
 # notsig.dat <- gwas.dat %>% 
 #   subset(PVAL >= 0.05) %>%
 #   slice(sample(nrow(.), nrow(.) / 10))
@@ -47,7 +47,7 @@ for (i in unique(gwas.dat$CHR)){
 axis.set <- gwas.dat %>% 
   group_by(CHR) %>% 
   summarize(center = (max(BPcum) + min(BPcum)) / 2)
-ylim <- abs(floor(log10(min(gwas.dat$P_BOLT_LMM)))) + 2 
+ylim <- abs(floor(log10(min(gwas.dat$P)))) + 2 
 sig <- 5e-8
 
 yname <- expression(paste("-Log"[10]*"(",italic("P"),")"))
