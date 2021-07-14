@@ -6,7 +6,7 @@ library(rhdf5)
 
 # ---------------------------------------------
 # Load config
-source("Rscripts/config.R")
+source("../config.R")
 
 # ------------------------------------------------------------------------
 ## Extract metadata and join with PCs for covariates

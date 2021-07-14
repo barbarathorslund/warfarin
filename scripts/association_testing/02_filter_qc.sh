@@ -21,5 +21,5 @@ export METADATA_FILE_RAW=$5
 export QC_FILTERED=$6
 export QC_FILTER_INFO=$7
 
-cd /home/projects/cu_10039/people/bartho/warfarin/R
-Rscript "Rscripts/03a_filter_qc.R"
+cd /home/projects/cu_10039/people/bartho/warfarin/scripts/association_testing
+Rscript "QC_filter.R"

@@ -7,16 +7,17 @@ add_config <- function(name, value) {
   assign(name, Sys.getenv(name, unset = value), envir = .GlobalEnv)
 }
 
+
 # Main paths
-add_config("DATA_DIR", "../data/ukb")
-add_config("KING_DATA_DIR", "../data/ukb/king")
-add_config("RAW_DATA_DIR", "../data/ukb/raw")
-add_config("RINTER_DIR", "../data/ukb/Rinter")
-add_config("PRS_DATA_DIR", "../data/ukb/prs")
-add_config("RESULTS_DIR", "../results")
-add_config("PLOTS_DIR", "../results/plots")
-add_config("BOLT_OUT_DATA_DIR", "../data/ukb/bolt_out")
-add_config("EASYQC_OUT_DATA_DIR", "../data/ukb/easyQC_out")
+add_config("DATA_DIR", "../../data/ukb")
+add_config("KING_DATA_DIR", "../../data/ukb/king")
+add_config("RAW_DATA_DIR", "../../data/ukb/raw")
+add_config("RINTER_DIR", "../../data/ukb/Rinter")
+add_config("PRS_DATA_DIR", "../../data/ukb/prs")
+add_config("RESULTS_DIR", "../../results")
+add_config("PLOTS_DIR", "../../results/plots")
+add_config("BOLT_OUT_DATA_DIR", "../../data/ukb/bolt_out")
+add_config("EASYQC_OUT_DATA_DIR", "../../data/ukb/easyQC_out")
 
 # Files
 

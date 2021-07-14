@@ -17,5 +17,5 @@ export KING_KIN_FILE=$1
 export KING_KIN0_FILE=$2
 export EXCLUDE_RELATED=$3
 
-cd /home/projects/cu_10039/people/bartho/warfarin/R
-Rscript "Rscripts/07_king_relatedpairs.R"
+cd /home/projects/cu_10039/people/bartho/warfarin/scripts/association_testing
+Rscript "king_relatedpairs.R"

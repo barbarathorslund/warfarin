@@ -5,7 +5,7 @@ rm(list = ls())
 library(data.table)
 # ---------------------------------------------
 # Load config
-source("Rscripts/config.R")
+source("../config.R")
 
 # ---------------------------------------------
 ## Get related id

@@ -6,7 +6,9 @@ library(tidyverse)
 library(data.table)
 # ---------------------------------------------
 # Load config
-source("Rscripts/config.R")
+source("../config.R")
+
+print(getwd())
 
 # ---------------------------------------------
 ## Extracting phenotype
@@ -238,7 +240,7 @@ warf_df <- warf_df %>%
 length(unique(warf_df$eid))
 
 # Plotting histogram of avg_daily_dosis to evaluate on distribution
-png(file= paste(PLOTS_DIR,"ukb_hist_responsevar.png", sep = "/"), width = 4, height = 3, units = "in", res = 1200, pointsize = 5)
+#png(file= paste(PLOTS_DIR,"ukb_hist_responsevar.png", sep = "/"), width = 4, height = 3, units = "in", res = 1200, pointsize = 5)
 hist(warf_df$avg_daily_dosis, ylim=range(0,0.8), main="UKB phenotype distribution", xlab="log(dose)", ylab = "density", prob=TRUE, breaks=50, col = "white")
 #curve(dnorm(x,mean=mean(warf_df$avg_daily_dosis),sd=sd(warf_df$avg_daily_dosis)), add=TRUE,col="red")
 dev.off()

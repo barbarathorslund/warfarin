@@ -92,6 +92,6 @@ df$eur_select <-(dd_brit < sds_brit^2) & (df$white | df$ethnic_miss)
  plot(df[samp,c("PC1","PC2")],col=cols[set[samp]],cex=.3,
       xlim = c(-20,20), ylim = c(-20,20))
 
- png(paste(PLOTS_DIR, "ukb39588_eur_selection_pca.png", sep = "/"),width=18,height=10,res=300,units="in")
+ #png(paste(PLOTS_DIR, "ukb39588_eur_selection_pca.png", sep = "/"),width=18,height=10,res=300,units="in")
  pairs(df[samp,c("PC1","PC2","PC3","PC4","PC5")],col=cols[set[samp]],cex=.1)
  dev.off()

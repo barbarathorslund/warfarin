@@ -6,7 +6,7 @@ library(data.table)
 library(tidyverse)
 # ---------------------------------------------
 # Load config
-source("Rscripts/config.R")
+source("../config.R")
 
 # ---------------------------------------------
 ## Get qc table with selections
@@ -42,7 +42,7 @@ QC_filter_info <- sqc %>% summarize(length(eid))
 
 # ---------------------------------------------
 # Get ethnicity selection
-source("Rscripts/ethnicity_selection.R")
+source("ethnicity_selection.R")
 
 ## Subset to the selection of white british
 qc_df <- subset(df, eur_select==T)

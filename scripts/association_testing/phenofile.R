@@ -6,7 +6,7 @@ library(data.table)
 library(tidyverse)
 # ---------------------------------------------
 # Load config
-source("Rscripts/config.R")
+source("../config.R")
 
 # ------------------------------------------------------------------------
 #### Read files

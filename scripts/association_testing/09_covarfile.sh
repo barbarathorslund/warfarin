@@ -13,10 +13,11 @@ module load gcc
 module load intel/perflibs
 module load R/4.0.3
 
-export META_QC_SAMPLES=$1
-export UNRELATED_PC=$2
-export RELATED_PC=$3
-export COVARFILE=$4
+export METADATA_FILE_RAW=$1
+export QC_FILTERED=$2
+export UNRELATED_PC=$3
+export RELATED_PC=$4
+export COVARFILE=$5
 
 cd /home/projects/cu_10039/people/bartho/warfarin/R
 Rscript "Rscripts/10_covarfile.R"
