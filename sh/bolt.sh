@@ -24,9 +24,9 @@ bolt \
 --bed=$datapath/genotype/modelSNP.bed \
 --bim=$datapath/genotype/modelSNP.bim \
 --fam=$datapath/genotype/modelSNP.fam \
---phenoFile=$datapath/pheno.txt \
+--phenoFile=$datapath/Rinter/pheno.txt \
 --phenoCol=logDose \
---covarFile=$datapath/cov.txt \
+--covarFile=$datapath/Rinter/cov.txt \
 --qCovarCol=yob \
 --qCovarCol=PC{1:10} \
 --covarCol=sex \
@@ -45,4 +45,4 @@ bolt \
 --noBgenIDcheck \
 --statsFileBgenSnps=$datapath/bolt_out/chr${N}.bgen.stats.gz \
 --bgenFile=/home/projects/cu_10039/data/UKBB/downloadDump/EGAD00010001474/ukb_imp_chr${N}_v3.bgen \
---sampleFile=$datapath/raw/saigeSampleFile.txt 
+--sampleFile=$datapath/raw/saigeSampleFile.txt

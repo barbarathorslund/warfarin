@@ -21,8 +21,6 @@ sample.id <- sqc[,"eid"]
 
 ph_cols <- data.frame(
   sample.id=h5read(h5.fn,"sample.id"),
-  country=h5read(h5.fn,"f.1647/f.1647")[,1], # country of birth in UK
-  country2=h5read(h5.fn,"f.20115/f.20115")[,1], # country of birth outside UK
   ethnic=h5read(h5.fn,"f.21000/f.21000")[,1], # self-report ethnicity
   stringsAsFactors = F
 ) 
@@ -41,7 +39,7 @@ qc <- sqc[qc_pass,]
 # Subset etnicity data for id passing qc
 ph = subset(ph_cols, sample.id %in% qc$eid)
 
-# Merge etnicity data with qc data
+# Merge ethnicity data with qc data
 df <- merge(ph, qc, by.y="eid", by.x="sample.id")
 
 # Get self-report whites and missing ethnicities (code specific)
@@ -58,7 +56,6 @@ df$genCac[df$sample.id %in% samplesGenCac] <- 1
 
 # Setting standard deviation for the selection
 ells <- 5
-#sds_white <- 4.5
 sds_brit <- 6
 
 # Get mean and SD of each PC among the curated white British sample and self-reported whites

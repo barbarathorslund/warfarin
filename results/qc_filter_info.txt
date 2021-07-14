@@ -1,2 +1,0 @@
-length(eid) eur sex_mismatch sex_aneu het_missing
-488377 437204 436869 436440 436440

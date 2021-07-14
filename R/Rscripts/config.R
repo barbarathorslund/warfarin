@@ -81,5 +81,10 @@ add_config("PRS_BLEED_PC", paste(PRS_DATA_DIR, "flashpca_bleed/pcs.txt",  sep = 
 add_config("PRS_BLEED_COVAR", paste(PRS_DATA_DIR, "prs_bleed_covar.txt",  sep = "/"))
 
 # prs_model.R
-add_config("PRS_PROFILE", "../data/prs/plink_bleed/prs.5e-08.profile")
+add_config("PRS_STROKE_PROFILE", "../data/prs/plink_stroke/prs.5e-08.profile")
+add_config("PRS_BLEED_PROFILE", "../data/prs/plink_bleed/prs.5e-08.profile")
 
+# PICS2.R
+add_config("PICS2_CHR10", "../results/PICS2/PICS2_chr10_results.txt")
+add_config("PICS2_CHR16", "../results/PICS2/PICS2_chr16_results.txt")
+add_config("PICS2_CHR19", "../results/PICS2/PICS2_chr19_results.txt")

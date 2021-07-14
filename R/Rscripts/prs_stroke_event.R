@@ -60,7 +60,6 @@ names(stroke_I64) = sample.id[,1]
 info_df$stroke_I64_date = stroke_I64_date
 info_df$stroke_I64_date[info_df$stroke_I64_date == -9999] <- NA
 
-
 # Inner join with issue data
 info_df <- info_df %>%
   mutate(V1 = as.integer(V1)) %>% 

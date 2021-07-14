@@ -16,6 +16,9 @@ source("Rscripts/config.R")
 #Loading dataset
 df_orig <- fread(ISSUE_FILE_RAW)
 
+# N = 222113
+length(unique(df_orig$eid))
+
 #removing dots from bnf_codes
 df_orig <- df_orig %>%
   mutate(bnf_code=str_replace_all(bnf_code,fixed("."),""))
@@ -231,9 +234,12 @@ sd_outliers <- warf_df %>%
 warf_df <- warf_df %>%
   filter(!(eid %in% sd_outliers$eid))
 
+# N = 6125
+length(unique(warf_df$eid))
+
 # Plotting histogram of avg_daily_dosis to evaluate on distribution
 png(file= paste(PLOTS_DIR,"ukb_hist_responsevar.png", sep = "/"), width = 4, height = 3, units = "in", res = 1200, pointsize = 5)
-hist(warf_df$avg_daily_dosis, ylim=range(0,0.8), main="Histogram of UKB logDose", xlab="log(dose)", ylab = "density", prob=TRUE, breaks=50)
+hist(warf_df$avg_daily_dosis, ylim=range(0,0.8), main="UKB phenotype distribution", xlab="log(dose)", ylab = "density", prob=TRUE, breaks=50, col = "white")
 #curve(dnorm(x,mean=mean(warf_df$avg_daily_dosis),sd=sd(warf_df$avg_daily_dosis)), add=TRUE,col="red")
 dev.off()
 
