@@ -20,7 +20,7 @@ gwas_data_load <- gwas_data_load %>%
   mutate(p=pval) %>% 
   select(-pval)
 
-# 
+# Get fraction relevant for plotting
 sig_data <- gwas_data_load %>% 
   subset(p > -log10(0.05))
 notsig_data <- gwas_data_load %>% 
@@ -29,7 +29,7 @@ notsig_data <- gwas_data_load %>%
   sample_frac(0.1)
 gwas_data <- bind_rows(sig_data, notsig_data)
 
-# 
+# Get cumulative positions
 data_cum <- gwas_data %>% 
   group_by(chr) %>% 
   summarise(max_bp = max(bp)) %>% 
@@ -40,14 +40,14 @@ gwas_data <- gwas_data %>%
   inner_join(data_cum, by = "chr") %>% 
   mutate(bp_cum = bp + bp_add)
 
-# 
+# x-axis and set significance threshold
 axis_set <- gwas_data %>% 
   group_by(chr) %>% 
   summarize(center = mean(bp_cum))
 ylim <- abs(floor(max(gwas_data$p))) + 2 
 sig <- 5e-8
 
-#
+# plot
 manhplot <- ggplot(gwas_data, aes(x = bp_cum, y = p, 
                                   color = as_factor(chr), size = p)) +
   geom_point(alpha = 0.8, size=1) +

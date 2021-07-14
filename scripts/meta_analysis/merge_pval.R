@@ -13,8 +13,6 @@ source("Rscripts/config.R")
 ukb <- fread("/Users/barbara/Documents/barbara/warfarin/data/ukb/ukb_warf_sumstat.txt")
 chb <- fread("/Users/barbara/Documents/barbara/warfarin/data/chb/chb_warf_sumstat.txt")
 
-
-
 # Merge PVAL ukb
 ukb_merged_pval <- ukb %>% unite(PVAL, PVAL1, PVAL2, sep="e") %>% 
   mutate(PVAL=str_replace(PVAL,fixed("e."),"")) %>% 

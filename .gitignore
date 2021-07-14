@@ -1,4 +1,4 @@
-/data
+
 .DS_Store
 .RData
 .Rhistory
@@ -8,7 +8,11 @@ sh/log/*.e
 sh/log/*.o
 snakemake/.snakemake
 EasyQC*.tar.gz
-results
 ukb_combined_bolt_out.txt.gz
 results/meta
-results
+
+results/*
+!results/results.txt
+
+data/*
+!data/data.txt

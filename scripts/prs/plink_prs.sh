@@ -7,8 +7,9 @@ module load tools
 module load ngs
 module load plink2/1.90beta5.4
 
-echo "5e-08 0 5e-08" > range_list 
+echo "5e-08 0 5e-08" > range_list
 
+# Clumping
 plink \
     --bfile ../../ukb/prs/genotype_stroke/genotype_prs_subsample.QC \
     --clump-p1 1 \

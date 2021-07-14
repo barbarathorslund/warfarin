@@ -20,7 +20,7 @@ module load R/4.0.3
 path=/home/projects/cu_10039/people/bartho/1KG/warf_biplot
 
 # Annotate UKB as chr:bp:A1:A2 and get list of common snp
-Rscript "../R/Rscripts/1kg_commonsnp.R"
+Rscript "1kg_commonsnp.R"
 
 # Update marker names in bfile for ukb
 plink --bfile $path/../../warfarin/data/ukb/genotype/modelSNP --update-name $path/warf_ukb_newnames.txt --make-bed --out $path/warf_ukb
@@ -36,7 +36,7 @@ echo 'warf_1kg_common' >> $path/merge_list.txt
 
 cd $path
 
-plink --merge-list merge_list.txt --make-bed --out warf_ukb_1kg_merged  
+plink --merge-list merge_list.txt --make-bed --out warf_ukb_1kg_merged
 
 # Caluclate PCA of merged data
-plink --bfile warf_ukb_1kg_merge  
+plink --bfile warf_ukb_1kg_merge

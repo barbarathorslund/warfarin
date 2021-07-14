@@ -31,9 +31,6 @@ meta_sumstat <- metal_out %>%
 
 write.table(meta_sumstat ,"/Users/barbara/Documents/barbara/warfarin/data/meta_sumstats/meta_warf_sumstat.txt", col.names = T, row.names = F, quote = F)
 
-## TODO: Run py script to get pval as -log10(pval) for plotting
-
-
 # Format for LD Hub (LDSC)
 meta_sumstat_LD <- meta_sumstat %>%
   summarize(snpid=SNP, A1=A1, A2=A2, b=BETA, N=N, p=P) 

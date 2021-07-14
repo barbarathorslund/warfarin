@@ -8,7 +8,7 @@ Livereqtl <- Livereqtl %>%
   column_to_rownames(var = 'gene_name')
 
 
-
+# Plot volcano
 volcano <- EnhancedVolcano(Livereqtl,
                 lab = rownames(Livereqtl),
                 x = 'effect_size',

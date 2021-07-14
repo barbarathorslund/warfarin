@@ -2,7 +2,7 @@ module load tools
 module load ngs
 module load metal/20180828
 
-cd /home/projects/cu_10039/people/bartho/warfarin/results/meta 
+cd /home/projects/cu_10039/people/bartho/warfarin/results/meta
 
 metal << EOT
 
@@ -33,7 +33,5 @@ PROCESS /home/projects/cu_10039/people/bartho/warfarin/data/chb/chb_warf_sumstat
 
 
 ANALYZE HETEROGENEITY
-
-ANALYZE
 
 QUIT

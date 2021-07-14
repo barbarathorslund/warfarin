@@ -37,7 +37,6 @@ export LD_LIBRARY_PATH=/home/projects/cu_10039/people/bartho/venv/lib:$LD_LIBRAR
 conda activate /home/projects/cu_10039/people/bartho/venv
 
 # Here you could write HPC directives if running on a compute cluster
-
 GWAS_TOOLS=../../summary-gwas-imputation/src
 METAXCAN=../../MetaXcan-master/software
 DATA=../../MetaXcan-master/data
