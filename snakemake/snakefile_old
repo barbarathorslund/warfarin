@@ -1,0 +1,132 @@
+
+data_dir = "/home/projects/cu_10039/people/bartho/warfarin/data/ukb/"
+raw_data_dir = "/home/projects/cu_10039/people/bartho/warfarin/data/ukb/raw/"
+sh_dir = "/home/projects/cu_10039/people/bartho/warfarin/sh/"
+results_dir = "/home/projects/cu_10039/people/bartho/warfarin/results/"
+
+ruleorder: phenotype > metadata > filter_qc > final_phenofile > plink_subsample > king > king_related_pairs > plink_filter > flashpca > covarfile
+
+rule phenotype:
+	input:
+		issues_raw = raw_data_dir + "ukb_gp_scripts.txt"
+	output:
+		defined_phenotype = data_dir + "Rinter/01_defined_phenotype.txt"
+	run:
+		shell(sh_dir + "01_phenotype.sh {input.issues_raw} {output.defined_phenotype}")
+
+rule metadata:
+	input:
+		metadata_raw = raw_data_dir + "ukb_27581.all_fields.h5"
+	output:
+		extracted_metadata = data_dir + "Rinter/02_extracted_metadata.txt"
+	run:
+		shell(sh_dir + "02_metadata.sh {input.metadata_raw} {output.extracted_metadata}")
+
+rule filter_qc:
+	input:
+		sqc_raw = raw_data_dir + "ukb_sqc_v2.txt.gz",
+		hdr_raw = raw_data_dir + "ukb_sqc_v2.header.txt.gz",
+		fam_raw = raw_data_dir + "ukb_43247_cal_chr1_v2_s488282.fam",
+		gqc_raw = raw_data_dir + "ukb_geneticSampleLevel_QCs_190527.tsv.gz",
+		metadata_raw = raw_data_dir + "ukb_27581.all_fields.h5"
+	output:
+		qc_filtered = data_dir + "Rinter/03_qc_filtered.txt",
+		qc_info = results_dir + "03_qc_filter_info.txt"
+	run:
+		shell(sh_dir + "03_filter_qc.sh {input.sqc_raw} {input.hdr_raw} {input.fam_raw} {input.gqc_raw} {input.metadata_raw} {output.qc_filtered} {output.qc_info}")
+
+rule final_phenofile:
+	input:
+		defined_phenotype = data_dir + "Rinter/01_defined_phenotype.txt",
+		extracted_metadata = data_dir + "Rinter/02_extracted_metadata.txt",
+		qc_filtered = data_dir + "Rinter/03_qc_filtered.txt"
+	output:
+		meta_qc_samples = data_dir + "Rinter/04_meta_qc_samples",
+		final_phenofile = data_dir + "pheno.txt",
+		final_subsample = data_dir + "subsample_ids.txt"
+	run:
+		shell(sh_dir + "04_phenofile.sh {input.defined_phenotype} {input.extracted_metadata} {input.qc_filtered} {output.meta_qc_samples} {output.final_phenofile} {output.final_subsample}")
+
+rule plink_subsample:
+	input:
+		final_subsample = data_dir + "subsample_ids.txt",
+		genotype_raw_bed = "/home/projects/cu_10039/data/UKBB/Genotype/EGAD00010001497/ukb.bed",
+		genotype_raw_bim = "/home/projects/cu_10039/data/UKBB/Genotype/EGAD00010001497/ukb.bim",
+		genotype_raw_fam = "/home/projects/cu_10039/data/UKBB/Genotype/EGAD00010001497/ukb.fam"
+	output:
+		genotype_subsample_bed = data_dir + "genotype/genotype_subsample.bed",
+		genotype_subsample_bim = data_dir + "genotype/genotype_subsample.bim",
+		genotype_subsample_fam = data_dir + "genotype/genotype_subsample.fam"
+	params:
+		genotype_raw = "/home/projects/cu_10039/data/UKBB/Genotype/EGAD00010001497/ukb",
+		genotype_subsample = data_dir + "genotype/genotype_subsample"
+	run:
+		shell(sh_dir + "05_plink_subsample.sh {params.genotype_raw} {input.final_subsample} {params.genotype_subsample}")
+
+rule king:
+	input:
+		genotype_subsample_bed = data_dir + "genotype/genotype_subsample.bed"
+	output:
+		king_kin = data_dir + "king/king.kin",
+		king_kin0 = data_dir + "king/king.kin0"
+	params:
+		king_output_path = data_dir + "king"
+	run:
+		shell(sh_dir + "06_king.sh {params.king_output_path} {input.genotype_subsample_bed}")
+
+rule king_related_pairs:
+	input:
+		king_kin = data_dir + "king/king.kin",
+		king_kin0 = data_dir + "king/king.kin0"
+	output:
+		exclude_related = data_dir + "king/excluderelated.txt"
+	run:
+		shell(sh_dir + "07_king_relatedpairs.sh {input.king_kin} {input.king_kin0} {output.exclude_related}")
+
+rule plink_filter:
+	input:
+		genotype_subsample_bed = data_dir + "genotype/genotype_subsample.bed",
+                genotype_subsample_bim = data_dir + "genotype/genotype_subsample.bim",
+                genotype_subsample_fam = data_dir + "genotype/genotype_subsample.fam",
+		exclude_regions = "/home/projects/cu_10039/people/jongho/warfarin/gendata/excludeRegions.txt"
+	output:
+		genotype_subsample_filtered_pruned_bed = data_dir + "genotype/genotype_subsample_filtered_pruned.bed",
+                genotype_subsample_filtered_pruned_bim = data_dir + "genotype/genotype_subsample_filtered_pruned.bim",
+                genotype_subsample_filtered_pruned_fam = data_dir + "genotype/genotype_subsample_filtered_pruned.fam",
+		modelSNP_bed = data_dir + "genotype/modelSNP.bed",
+                modelSNP_bim = data_dir + "genotype/modelSNP.bim",
+                modelSNP_fam = data_dir + "genotype/modelSNP.fam"
+	params:
+                genotype_output_path = data_dir + "genotype",
+                genotype_subsample = data_dir + "genotype/genotype_subsample",
+                genotype_subsample_filtered_pruned = data_dir + "genotype/genotype_subsample_filtered_pruned",
+                model_snp = data_dir + "genotype/modelSNP"
+	run:
+		shell(sh_dir + "08_plink_filter.sh {params.genotype_output_path} {params.genotype_subsample} {input.exclude_regions} {params.genotype_subsample_filtered_pruned} {params.model_snp}")
+
+rule flashpca:
+	input:
+		genotype_subsample_filtered_pruned_bed = data_dir + "genotype/genotype_subsample_filtered_pruned.bed",
+                genotype_subsample_filtered_pruned_bim = data_dir + "genotype/genotype_subsample_filtered_pruned.bim",
+                genotype_subsample_filtered_pruned_fam = data_dir + "genotype/genotype_subsample_filtered_pruned.fam",
+		exclude_related = data_dir + "king/excluderelated.txt"
+	output:
+		unrelated_pc = data_dir + "flashpca/pcs.txt",
+                related_pc = data_dir + "flashpca/projections.txt"
+	params:
+		flashpca_output_path = data_dir + "flashpca",
+		genotype_subsample_filtered_pruned = data_dir + "genotype/genotype_subsample_filtered_pruned"
+	run:
+		shell(sh_dir + "09_flashpca.sh {params.flashpca_output_path} {params.genotype_subsample_filtered_pruned} {input.exclude_related}")
+
+rule covarfile:
+	input: 
+		meta_qc_samples = data_dir + "Rinter/04_meta_qc_samples",
+		unrelated_pc = data_dir + "flashpca/pcs.txt",
+		related_pc = data_dir + "flashpca/projections.txt"
+	output:
+		covarfile = data_dir + "cov.txt"
+	run:
+		shell(sh_dir + "10_covarfile.sh {input.meta_qc_samples} {input.unrelated_pc} {input.related_pc} {output.covarfile}")
+
+

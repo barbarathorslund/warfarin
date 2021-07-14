@@ -17,4 +17,4 @@ export ISSUE_FILE_RAW=$1
 export DEFINED_PHENOTYPE=$2
 
 cd /home/projects/cu_10039/people/bartho/warfarin/R
-Rscript "Rscripts/01_phenotype.R"
+Rscript "Rscripts/define_phenotype.R"
